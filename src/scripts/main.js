@@ -1,24 +1,22 @@
 'use strict';
 
 const population = [...document.querySelectorAll('.population')];
-const populationTotla = [];
+const populationTotal = [];
 
 for (const ch of population) {
-  const num = Number(ch.textContent.replace(/,/g, ''));
+  const sum = Number(ch.textContent.replace(/,/g, ''));
 
-  populationTotla.push(num);
+  populationTotal.push(sum);
 }
 
-const result = populationTotla.reduce((acc, value) => acc + value);
+const result = populationTotal.reduce((acc, val) => acc + val, 0);
+const average = result / populationTotal.length;
 
-const totalSum = result / populationTotla.length;
+const formattedResult = result.toLocaleString('en-US');
+const formattedAverage = average.toLocaleString('en-US');
 
 const totalPopulation = document.querySelector('.total-population');
-
 const averagePopulation = document.querySelector('.average-population');
 
-const totalFormatted = totalSum.toLocaleString('en-US');
-const averageFormatted = result.toLocaleString('en-US');
-
-averagePopulation.textContent = totalFormatted;
-totalPopulation.textContent = averageFormatted;
+totalPopulation.textContent = formattedResult;
+averagePopulation.textContent = formattedAverage;
